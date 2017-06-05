@@ -1,30 +1,22 @@
 package com.bpm.base;
 
-import java.io.File;
-import java.net.MalformedURLException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.safari.SafariOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.bpm.util.TestStatus;
 
 
 
@@ -37,10 +29,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 
-public class BaseWebDriver
+
+public class BaseWebDriver extends BaseFramework
 {
 	private  WebDriver d = null;
-	private   Logger logger = LogManager.getLogger(BaseWebDriver.class);
+	private WebDriverWait wait;
+	//private  static Logger logger = LogManager.getLogger(BaseWebDriver.class);
 
 
 	public BaseWebDriver(WebDriver d) {
@@ -48,6 +42,9 @@ public class BaseWebDriver
 		
 	}
 
+	
+	
+	
 	/**
 	 * To get the webDriver Instance
 	 * Where ever needed in the other class
@@ -56,84 +53,178 @@ public class BaseWebDriver
 	public  WebDriver getWD() {
 		return d;
 	}
+	
+
+	
+
 	/**
-	 * To create the required browser instance.
-	 * 
-	 * @param Browser
-	 * @return the instance of created web-driver
-	 * @throws MalformedURLException
+	 * To Get WebElement Based on the locator type 
+	 * @param elementlocator
+	 * @return
+	 * @throws IOException 
 	 */
 
-	public  WebDriver createWebDriverInstance(String Browser) throws MalformedURLException
-	{
-		if(d==null && Browser.equals("Firefox"))
-		{
+	public WebElement getId(String elementlocator) throws IOException {
+		wait = new WebDriverWait(this.d, 30);
+		try{
 
-			d = new FirefoxDriver();
-			logger.info("--FireFox Browser has opened ");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(elementlocator)));
+			return this.d.findElement(By.id(elementlocator));
+		}catch(Exception e){
+			try{
+				scrollWebElement(this.d.findElement(By.id(elementlocator)));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(elementlocator)));
+				return this.d.findElement(By.id(elementlocator));
+			}catch(Exception e1){
+				getReport().insertStep(e1.toString(), "", TestStatus.FAIL, "", true);
+				throw e;
+			}
 		}
 
-		else if(d==null &&  Browser.equals("Chrome"))
-		{
-			String path ="D:\\Hitesh\\workspace\\com.BPM\\binary\\chromedriver.exe";
-			System.setProperty("webdriver.chrome.driver", path);
-			ChromeOptions options = new ChromeOptions();
-			DesiredCapabilities caps = DesiredCapabilities.chrome();
-			d = new ChromeDriver(caps);
-			logger.info("--Chrome Browser has opened ");
+	}
+
+	public WebElement getName(String elementlocator) throws IOException {
+		wait = new WebDriverWait(this.d, 30);
+		try{
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(elementlocator)));
+			return this.d.findElement(By.name(elementlocator));
+		}catch(Exception e){
+			try{
+				scrollWebElement(this.d.findElement(By.name(elementlocator)));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(elementlocator)));
+				return this.d.findElement(By.name(elementlocator));
+			}catch(Exception e1){
+				getReport().insertStep(e1.toString(), "", TestStatus.FAIL, "", true);
+				throw e;
+			}
 		}
 
-		else if (d==null && Browser.equals("IE"))
-		{
-			String path ="binary/IEDriverServer.exe";
-			System.setProperty("webdriver.ie.driver", path);
-			logger.info("--IEDriver has setup");
-			DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
-			caps.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,true);
-			caps.setCapability("requireWindowFocus", true);
-			caps.setCapability("enablePersistentHover", true);
-			caps.setCapability("native events", true);
-			d = new InternetExplorerDriver(caps);
-			logger.info("--IE Browser has opened ");
+	}
+
+	public WebElement getXpath(String elementlocator) throws IOException {
+		wait = new WebDriverWait(this.d, 30);
+		try{
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementlocator)));
+			return this.d.findElement(By.xpath(elementlocator));
+		}catch(Exception e){
+			try{
+				scrollWebElement(this.d.findElement(By.xpath(elementlocator)));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementlocator)));
+				return this.d.findElement(By.xpath(elementlocator));
+			}catch(Exception e1){
+				getReport().insertStep(e1.toString(), "", TestStatus.FAIL, "", true);
+				throw e;
+			}
 		}
 
-		else if (d==null && Browser.equals("Safari"))
-		{
-			File safariExt = new File("binary/SafariDriver2.32.0.safariextz");
-			SafariOptions opt = new SafariOptions();
+	}
 
-			//opt.addExtensions(safariExt);
-			DesiredCapabilities capabilities = DesiredCapabilities.safari();
-			capabilities.setCapability(SafariOptions.CAPABILITY, opt);
-			capabilities.setCapability("requireWindowFocus", true);
-			capabilities.setCapability("enablePersistentHover", true);
-			capabilities.setCapability("native events", true);
-			d = new SafariDriver(capabilities);
-			logger.info("--Safari Browser has opened ");
-		}
-		else if (d==null && Browser.equals("IE32bit"))
-		{
-			String path ="binary/IEDriverServer_32bit.exe";
-			System.setProperty("webdriver.ie.driver", path);
-			logger.info("--IEDriver has setup");
-			DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
-			caps.setCapability(
-					InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
-					true);
-			caps.setCapability("requireWindowFocus", true);
-			caps.setCapability("enablePersistentHover", false);
-			caps.setCapability("native events", true);
-			d = new InternetExplorerDriver(caps);
-			logger.info("--IE Browser has opened ");
-		}
-		return d;
+	public WebElement getCSS(String elementlocator) throws IOException {
+		wait = new WebDriverWait(this.d, 30);
+		try{
 
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(elementlocator)));
+			return this.d.findElement(By.cssSelector(elementlocator));
+		}catch(Exception e){
+			try{
+				scrollWebElement(this.d.findElement(By.cssSelector(elementlocator)));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(elementlocator)));
+				return this.d.findElement(By.cssSelector(elementlocator));
+			}catch(Exception e1){
+				getReport().insertStep(e1.toString(), "", TestStatus.FAIL, "", true);
+				throw e;
+			}
+		}
 
 	}
 
 
+	public WebElement getClassName(String elementlocator) throws IOException {
+		wait = new WebDriverWait(this.d, 30);
+		try{
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(elementlocator)));
+			return this.d.findElement(By.className(elementlocator));
+		}catch(Exception e){
+			try{
+				scrollWebElement(this.d.findElement(By.className(elementlocator)));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(elementlocator)));
+				return this.d.findElement(By.className(elementlocator));
+			}catch(Exception e1){
+				getReport().insertStep(e1.toString(), "", TestStatus.FAIL, "", true);
+				throw e;
+			}
+		}
+
+	}
 
 
+	public WebElement getLinkText(String elementlocator) throws IOException {
+		wait = new WebDriverWait(this.d, 30);
+		
+		try{
+
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(elementlocator)));
+			return this.d.findElement(By.linkText(elementlocator));
+		}catch(Exception e){
+			try{
+				scrollWebElement(this.d.findElement(By.linkText(elementlocator)));
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(elementlocator)));
+				return this.d.findElement(By.linkText(elementlocator));
+			}catch(Exception e1){
+				getReport().insertStep(e1.toString(), "", TestStatus.FAIL, "", false);
+				throw e;
+			}
+		}
+
+	}
+
+	
+	public List<WebElement> getWebElements(String locator){
+		
+		String data[] = locator.split("=");
+		 
+		String elementlocator = data[1].trim();
+		List<WebElement> elements=null;
+		elements = getWD().findElements(By.xpath(elementlocator));
+		return elements;
+	}
+
+	public  WebElement getWebElement(String locator) throws IOException {
+
+		
+		String data[] = locator.split("=");
+		String locatortype = data[0].trim();
+		String elementlocator = data[1].trim();
+		WebElement element=null;
+		if (locatortype.equalsIgnoreCase("id")) {
+			element = getId(elementlocator);
+		} else if (locatortype.equalsIgnoreCase("name")) {
+			element = getName(locatortype);
+		} else if (locatortype.equalsIgnoreCase("xpath")) {
+			element = getXpath(elementlocator);
+		} else if (locatortype.equalsIgnoreCase("css")) {
+			element = getCSS(elementlocator);
+		} else if (locatortype.equalsIgnoreCase("class")) {
+			element = getClassName(elementlocator);
+		} else if (locatortype.equalsIgnoreCase("link")) {
+			element = getLinkText(elementlocator);
+		}
+		return element;
+
+	}
+
+	public void scrollWebElement(WebElement element){
+
+		JavascriptExecutor je = (JavascriptExecutor) this.d; 
+		je.executeScript("arguments[0].scrollIntoView(true);",element);
+
+	}
+	
+	
+	
 
 	/**
 	 * To open the defined URL.
@@ -212,6 +303,7 @@ public class BaseWebDriver
 
 	public  void clickAndWait(WebElement elementlocator) throws Exception {
 
+		
 		click(elementlocator);
 		waitForPageToLoad();
 	}
@@ -420,10 +512,12 @@ public class BaseWebDriver
 	 * @param elementlocator
 	 * @param locatortype
 	 * @param valuetotype
+	 * @throws IOException 
 	 */
 
-	public  void sendKeys(WebElement elementlocator , String valuetotype) {
+	public  void sendKeys(WebElement elementlocator , String valuetotype) throws IOException {
 
+		
 		elementlocator.sendKeys(valuetotype);
 	}
 
@@ -466,8 +560,6 @@ public class BaseWebDriver
 	 */
 
 	public  void switchFrame(WebElement framelocator) {
-
-		WebElement element;
 		
 		getWD().switchTo().frame(framelocator);
 	}
