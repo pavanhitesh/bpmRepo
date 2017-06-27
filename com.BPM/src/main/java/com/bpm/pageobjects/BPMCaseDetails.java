@@ -28,8 +28,11 @@ public class BPMCaseDetails {
 	public String getNextButton=".//*[text()='Next' and contains(@class,'button')]";
 	public String getFinishButton=".//*[text()='Finish' and contains(@class,'button')]";
 	public String getCompleteTaskButton=".//*[text()='Complete task' and contains(@class,'button')]";
-
-
+	public String getCustomerDocumentUploadFile = ".//input[@type='file']";
+	public String getCasesTab = "(.//*[contains(text(),'Cases') and contains(@class,'button-caption')])[1]";
+	public String getCaseLink = ".//*[text()='@@value@@' and contains(@class,'table-cell')]";
+	public String getCancellationSent = "(.//*[text()='Was the cancellation letter sent?']/following::input[contains(@class,'filterselect-input')])[1]";
+	public String getCancellationSentValue = ".//*[contains(text(),'@@value@@')]";
 
 }
 

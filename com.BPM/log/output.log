@@ -1,4 +1,4 @@
-2017-06-05 23:47:11 INFO  BPMDefinitions:39  - Started the Scenario
-2017-06-05 23:47:18 INFO  BaseFramework:135  - --Chrome Browser has opened 
-2017-06-05 23:47:21 INFO  BPMDefinitions:81  - Opening the url
-2017-06-05 23:47:31 INFO  BPMDefinitions:66  - Logining to BPM Portal
+2017-06-20 12:21:24 INFO  BPMDefinitions:41  - Started the Scenario
+2017-06-20 12:21:29 INFO  BaseFramework:145  - --Chrome Browser has opened 
+2017-06-20 12:22:08 INFO  BPMDefinitions:87  - Opening the qa url http://bpm-web-qa.us-east-1.elasticbeanstalk.com/ui/#cases/smb-onboarding/739641
+2017-06-20 12:22:10 INFO  BPMDefinitions:70  - Logining to BPM Portal

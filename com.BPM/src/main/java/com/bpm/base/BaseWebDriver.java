@@ -194,11 +194,18 @@ public class BaseWebDriver extends BaseFramework
 
 	public  WebElement getWebElement(String locator) throws IOException {
 
-		
+		WebElement element=null;
+		if(locator.startsWith(".//") || locator.startsWith("(.//")){
+			
+			
+				element = getXpath(locator);
+			
+			
+		}else{
 		String data[] = locator.split("=");
 		String locatortype = data[0].trim();
 		String elementlocator = data[1].trim();
-		WebElement element=null;
+		
 		if (locatortype.equalsIgnoreCase("id")) {
 			element = getId(elementlocator);
 		} else if (locatortype.equalsIgnoreCase("name")) {
@@ -211,6 +218,7 @@ public class BaseWebDriver extends BaseFramework
 			element = getClassName(elementlocator);
 		} else if (locatortype.equalsIgnoreCase("link")) {
 			element = getLinkText(elementlocator);
+		}
 		}
 		return element;
 

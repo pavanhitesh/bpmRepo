@@ -48,7 +48,7 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-BPM_Firefox">
-                    <span>D:\Hitesh\bpmRepo-master\bpmRepo-master\com.BPM\src\test\resources\TestNGXml\test.xml</span>
+                    <span>C:\Git-qa-web-cucumber\qa-web-cucumber\src\test\resources\TestNGXml\test.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -127,68 +127,38 @@
                   <a name="run_cukes">
                   </a> <!-- run_cukes -->
                   <span class="method-name">run_cukes</span>
-                  <div class="stack-trace">cucumber.runtime.CucumberException: org.openqa.selenium.TimeoutException: Timed out after 30 seconds waiting for visibility of element located by By.xpath: .//*[text()=&apos;All Open Tasks&apos; and contains(@class,&apos;button&apos;)]
+                  <div class="stack-trace">cucumber.runtime.CucumberException: org.openqa.selenium.StaleElementReferenceException: stale element reference: element is not attached to the page document
+  (Session info: chrome=58.0.3029.110)
+  (Driver info: chromedriver=2.30.477700 (0057494ad8732195794a7b32078424f92a5fce41),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 32 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
 Build info: version: &apos;2.53.1&apos;, revision: &apos;a36b8b1cd5757287168e54b817830adce9b0158d&apos;, time: &apos;2016-06-30 19:26:09&apos;
-System info: host: &apos;admin-PC&apos;, ip: &apos;192.168.141.1&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_131&apos;
+System info: host: &apos;RUB-BNTSR72&apos;, ip: &apos;10.128.109.151&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_121&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.29.461591 (62ebf098771772160f391d75e589dc567915b233), userDataDir=C:\Users\admin\AppData\Local\Temp\scoped_dir4864_20866}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
-Session ID: 9de68596e9766334aa4e73e705ffbbc2
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.30.477700 (0057494ad8732195794a7b32078424f92a5fce41), userDataDir=C:\Users\RAMYA~1.ANN\AppData\Local\Temp\scoped_dir10892_22601}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 4cd4d0e702dec5cf6dd8660b23e6b2f3
 	at cucumber.api.testng.TestNGCucumberRunner.runCukes(TestNGCucumberRunner.java:48)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.run_cukes(AbstractTestNGCucumberTests.java:14)
 	at cucumber.api.testng.AbstractTestNGCucumberTests.run(AbstractTestNGCucumberTests.java:19)
-Caused by: org.openqa.selenium.TimeoutException: Timed out after 30 seconds waiting for visibility of element located by By.xpath: .//*[text()=&apos;All Open Tasks&apos; and contains(@class,&apos;button&apos;)]
-Build info: version: &apos;2.53.1&apos;, revision: &apos;a36b8b1cd5757287168e54b817830adce9b0158d&apos;, time: &apos;2016-06-30 19:26:09&apos;
-System info: host: &apos;admin-PC&apos;, ip: &apos;192.168.141.1&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_131&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.29.461591 (62ebf098771772160f391d75e589dc567915b233), userDataDir=C:\Users\admin\AppData\Local\Temp\scoped_dir4864_20866}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
-Session ID: 9de68596e9766334aa4e73e705ffbbc2
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
-	at com.bpm.pageobjects.BPMHomePage.getAllTask(BPMHomePage.java:64)
-	at com.bpm.pageactions.BPMHomeActions.searchCaseId(BPMHomeActions.java:31)
-	at com.bpm.definitions.BPMDefinitions.i_Search_CaseId(BPMDefinitions.java:91)
-	at ?.Given I Search CaseId &quot;003995-118120-2662489&quot;(Login.feature:9)
-Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;.//*[text()=&apos;All Open Tasks&apos; and contains(@class,&apos;button&apos;)]&quot;}
+Caused by: org.openqa.selenium.StaleElementReferenceException: stale element reference: element is not attached to the page document
   (Session info: chrome=58.0.3029.110)
-  (Driver info: chromedriver=2.29.461591 (62ebf098771772160f391d75e589dc567915b233),platform=Windows NT 6.1.7600 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 20.06 seconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+  (Driver info: chromedriver=2.30.477700 (0057494ad8732195794a7b32078424f92a5fce41),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 32 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
 Build info: version: &apos;2.53.1&apos;, revision: &apos;a36b8b1cd5757287168e54b817830adce9b0158d&apos;, time: &apos;2016-06-30 19:26:09&apos;
-System info: host: &apos;admin-PC&apos;, ip: &apos;192.168.141.1&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_131&apos;
+System info: host: &apos;RUB-BNTSR72&apos;, ip: &apos;10.128.109.151&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_121&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.29.461591 (62ebf098771772160f391d75e589dc567915b233), userDataDir=C:\Users\admin\AppData\Local\Temp\scoped_dir4864_20866}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
-Session ID: 9de68596e9766334aa4e73e705ffbbc2
-*** Element info: {Using=xpath, value=.//*[text()=&apos;All Open Tasks&apos; and contains(@class,&apos;button&apos;)]}
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.30.477700 (0057494ad8732195794a7b32078424f92a5fce41), userDataDir=C:\Users\RAMYA~1.ANN\AppData\Local\Temp\scoped_dir10892_22601}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 4cd4d0e702dec5cf6dd8660b23e6b2f3
 	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
 	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
-	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
-	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:899)
-	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
-	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
-	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
-	at com.bpm.pageobjects.BPMHomePage.getAllTask(BPMHomePage.java:64)
-	at com.bpm.pageactions.BPMHomeActions.searchCaseId(BPMHomeActions.java:31)
-	at com.bpm.definitions.BPMDefinitions.i_Search_CaseId(BPMDefinitions.java:91)
-	at cucumber.runtime.Utils$1.call(Utils.java:34)
-	at cucumber.runtime.Timeout.timeout(Timeout.java:13)
-	at cucumber.runtime.Utils.invoke(Utils.java:30)
-	at cucumber.runtime.java.JavaStepDefinition.execute(JavaStepDefinition.java:35)
-	at cucumber.runtime.StepDefinitionMatch.runStep(StepDefinitionMatch.java:37)
-	at cucumber.runtime.Runtime.runStep(Runtime.java:298)
-	at cucumber.runtime.model.StepContainer.runStep(StepContainer.java:44)
-	at cucumber.runtime.model.StepContainer.runSteps(StepContainer.java:39)
-	at cucumber.runtime.model.CucumberScenario.run(CucumberScenario.java:48)
-	at cucumber.runtime.model.CucumberFeature.run(CucumberFeature.java:163)
-	at cucumber.runtime.Runtime.run(Runtime.java:120)
-	at cucumber.api.testng.TestNGCucumberRunner.runCukes(TestNGCucumberRunner.java:43)
-	at cucumber.api.testng.AbstractTestNGCucumberTests.run_cukes(AbstractTestNGCucumberTests.java:14)
-	at cucumber.api.testng.AbstractTestNGCucumberTests.run(AbstractTestNGCucumberTests.java:19)
-... Removed 68 stack frames
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:327)
+	at org.openqa.selenium.remote.RemoteWebElement.sendKeys(RemoteWebElement.java:122)
+	at com.bpm.pageactions.BPMCaseActions.uploadContractDocument(BPMCaseActions.java:181)
+	at com.bpm.definitions.BPMDefinitions.i_Upload_Customer_Documents(BPMDefinitions.java:235)
+	at ?.Given I Upload Customer Document(Login.feature:38)
+... Removed 34 stack frames
 </div> <!-- stack-trace -->
                   <em>
 (Runs Cucumber Features)                  </em>
@@ -199,7 +169,7 @@ Session ID: 9de68596e9766334aa4e73e705ffbbc2
         </div> <!-- panel BPM_Firefox -->
         <div panel-name="test-xml-BPM_Firefox" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">D:\Hitesh\bpmRepo-master\bpmRepo-master\com.BPM\src\test\resources\TestNGXml\test.xml</span>
+            <span class="header-content">C:\Git-qa-web-cucumber\qa-web-cucumber\src\test\resources\TestNGXml\test.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -260,7 +230,7 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'run_cukes')
 data.setCell(0, 2, 'com.bpm.runner.TestRunner')
-data.setCell(0, 3, 69570);
+data.setCell(0, 3, 83466);
 window.suiteTableData['BPM_Firefox']= { tableData: data, tableDiv: 'times-div-BPM_Firefox'}
 return data;
 }
@@ -281,14 +251,38 @@ return data;
               <div class="reporter-method-output-div">
                 <span class="reporter-method-output"><div "featureFile">Feature File: Login.feature</div></span>
                 <span class="reporter-method-output"><div "feature">Feature: To Test BPM Portal</div></span>
-                <span class="reporter-method-output"><div "scenario">Scenario: To Login to BPM Portal</div></span>
-                <span class="reporter-method-output"><div "result">Given  I Navigate to BPM Portal (passed : 11s)</div></span>
-                <span class="reporter-method-output"><div "result">When  I Login to BPM (passed : 4s)</div></span>
-                <span class="reporter-method-output"><div "result">Given  I Search CaseId &quot;003995-118120-2662489&quot; (failed : 41s)</div></span>
+                <span class="reporter-method-output"><div "scenario">Scenario: To upload customer document and add Haluer and complete the task</div></span>
+                <span class="reporter-method-output"><div "result">Given  I Make a New Purchase in Sales Portal (passed : 39s)</div></span>
+                <span class="reporter-method-output"><div "result">And  I Navigate to BPM Portal (passed : 2s)</div></span>
+                <span class="reporter-method-output"><div "result">When  I Login to BPM (passed : 3s)</div></span>
+                <span class="reporter-method-output"><div "result">Given  I Click on All Task Tab (passed : 6s)</div></span>
+                <span class="reporter-method-output"><div "result">And  I Search CaseId &quot;&quot; (passed : 8s)</div></span>
+                <span class="reporter-method-output"><div "result">And  I Click on the Case Link &quot;&quot; (passed : 10s)</div></span>
+                <span class="reporter-method-output"><div "result">And  I Click on Claim (passed : 0s)</div></span>
+                <span class="reporter-method-output"><div "result">Given  I Upload Customer Document (failed : 2s)</div></span>
+                <span class="reporter-method-output"><div "result">Then  I Click on Complete Task (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">Given  I Click on the Cases Tab (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">Given  I Search CaseId &quot;&quot; (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">And  I Click on the Case Link &quot;&quot; (skipped)</div></span>
                 <span class="reporter-method-output"><div "result">Then  I Click on Add3 Contact Button (skipped)</div></span>
                 <span class="reporter-method-output"><div "result">And  I Click on Claim (skipped)</div></span>
                 <span class="reporter-method-output"><div "result">Given  I Select LOA Details &quot;Yes, LOA looks OK&quot; (skipped)</div></span>
                 <span class="reporter-method-output"><div "result">Then  I Click on Add Haluer Button (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">When  I Add Hauler Name Details &quot;TestAutomation&quot; (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">And  I Add Hauler Details &quot;Lock Fee&quot; (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">And  I Add Hauler Details &quot;Caster Fee&quot; (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">And  I Add Hauler Details Add Button (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">Then  I Select Haulers Agree To The Terms (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">Given  I Add Contracted Haluer Details (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">Then  I Click on Complete Task (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">Given  I Click on the Task Tab (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">And  I Search CaseId &quot;&quot; (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">And  I Click on the Case Link &quot;&quot; (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">Then  I Click on Claim (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">When  I Select Cancellation Details &quot;No, the cancellation letter was not sent because there is no incumbent&quot; (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">Then  I Click on Complete Task (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">And  I Click on Logout (skipped)</div></span>
+                <span class="reporter-method-output"><div "result">And  I Click on Logout (skipped)</div></span>
               </div> <!-- reporter-method-output-div -->
             </div> <!-- reporter-method-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->

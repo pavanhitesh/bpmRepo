@@ -32,11 +32,22 @@ public class BaseFramework {
 	private static Properties prop ;
 	private static Xls_Reader xls;
 	private static ExtentReport report;
+	private static String newCaseID;
 	
 	
 	
 	
 	
+	
+
+	public static String getNewCaseID() {
+		return newCaseID;
+	}
+
+	public static void setNewCaseID(String newCaseID) {
+		BaseFramework.newCaseID = newCaseID;
+	}
+
 	public static ExtentReport getReport() {
 		return report;
 	}
@@ -169,7 +180,7 @@ public class BaseFramework {
 
 	public String replaceLocator(String locator , String value){
 		String returnLocator =  null;
-		locator.replace("@@value@@", value);
+		returnLocator= locator.replace("@@value@@", value);
 		return returnLocator;
 		
 	}

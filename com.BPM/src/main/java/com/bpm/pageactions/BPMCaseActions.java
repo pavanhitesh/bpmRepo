@@ -2,7 +2,13 @@ package com.bpm.pageactions;
 
 
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.bpm.base.BaseFramework;
 import com.bpm.base.BaseWebDriver;
@@ -30,6 +36,7 @@ public class BPMCaseActions extends BaseFramework {
 			getReport().insertStep("clicking on claim", "user claiming the task", TestStatus.INFO, "", false);
 			base.click(base.getWebElement(obj.getClaimButton));
 			base.waitForPageToLoad();
+			base.delay(5);
 		}catch(Exception e){
 			getReport().insertStep(e.getMessage(), "", TestStatus.FAIL, "", true);
 			throw e;
@@ -53,27 +60,40 @@ public class BPMCaseActions extends BaseFramework {
 
 		try{
 			base.clickAndWait(base.getWebElement(obj.getAddHaluerButton));
-			base.wait(3000);
+			base.delay(3);
 		}catch(Exception e){
 			getReport().insertStep(e.getMessage(), "", TestStatus.FAIL, "", true);
 			throw e;
 		}
 	}
 
-	public void addHaluerDetails() throws Exception{
+
+	public void addHaluerNameinDetails(String name) throws Exception {
 
 		try{
-			base.sendKeys(base.getWebElement(obj.getHaulerTextBox), "Testutomation");
-			base.sendKeys(base.getWebElement(obj.getRateTypeDropDown), "Lock Fee");
-			base.click(base.getWebElement(replaceLocator(obj.getRateDropwonValue,"Lock Fee")));
+
+			base.sendKeys(base.getWebElement(obj.getHaulerTextBox), name);
+		}catch(Exception e){
+			getReport().insertStep(e.getMessage(), "", TestStatus.FAIL, "", true);
+			throw e;
+		}
+	}
+
+	public void addHaluerDetails(String unitValues) throws Exception{
+
+		try{
+
+			base.sendKeys(base.getWebElement(obj.getRateTypeDropDown), unitValues);
+			base.click(base.getWebElement(replaceLocator(obj.getRateDropwonValue,unitValues)));
+			base.delay(2);
 			base.sendKeys(base.getWebElement(obj.getUnitOfMeasureDropDown), "Each");
 			base.click(base.getWebElement(replaceLocator(obj.getUnitOfMeasureDropwonValue,"Each")));
+			base.delay(2);
 			base.sendKeys(base.getWebElement(obj.getRateTextBox), "10.0");
 			base.delay(3);
 			base.click(base.getWebElement(obj.getAddRateButton));
 			base.delay(4);
-			base.click(base.getWebElement(obj.getADDHaluerButton));
-			base.delay(3);
+
 
 
 		}catch(Exception e){
@@ -82,6 +102,18 @@ public class BPMCaseActions extends BaseFramework {
 		}
 	}
 
+
+	public void clickAddHaluerButtonInAddDetails() throws Exception{
+
+		try{
+			base.click(base.getWebElement(obj.getADDHaluerButton));
+			base.delay(3);
+		}catch(Exception e){
+			getReport().insertStep(e.getMessage(), "", TestStatus.FAIL, "", true);
+			throw e;
+		}
+
+	}
 	public void selectHaluerTermsAndDetails() throws Exception{
 
 		try{
@@ -100,11 +132,11 @@ public class BPMCaseActions extends BaseFramework {
 
 		try{
 			base.clickAndWait(base.getWebElement(obj.getAddContractedHaluer));
-			base.wait(3000);
+			base.delay(3);
 			base.Clear(base.getWebElement(obj.getNameTextBox));
 			base.sendKeys(base.getWebElement(obj.getVendorIDTextBox), "AB1003");
 			base.clickAndWait(base.getWebElement(obj.getSearchButton));
-			base.wait(3000);
+			base.delay(3);
 			base.click(base.getWebElement(replaceLocator(obj.getVendorLink,"AB1003")));
 			base.click(base.getWebElement(obj.getVendorTypeDropDown));
 			base.click(base.getWebElement(replaceLocator(obj.getVendorTypeDropDownValue,"Exclusive Franchise")));
@@ -127,6 +159,7 @@ public class BPMCaseActions extends BaseFramework {
 		try{
 
 			base.click(base.getWebElement(obj.getCompleteTaskButton));
+			base.delay(8);
 			getReport().insertStep("Completing Task	", "Task Completed for adding Haluer", TestStatus.PASS, "", true);
 
 
@@ -135,5 +168,64 @@ public class BPMCaseActions extends BaseFramework {
 			throw e;
 		}
 	}
-	
+
+
+	public void uploadContractDocument() throws Exception{
+
+		try{
+			String path = System.getProperty("user.dir")+File.separator+"src"+File.separator+"test"+File.separator+"resources"+File.separator+"TESTDEMOINVOICE.pdf";
+			List<WebElement> upload = d.findElements(By.xpath(obj.getCustomerDocumentUploadFile));
+			int size = upload.size();
+			System.out.println("The size "+size);
+			base.scrollWebElement(upload.get(0));
+			base.delay(2);
+			upload.get(0).sendKeys(path);
+			base.delay(6);
+			getReport().insertStep("Uploading the Contract Document", "", TestStatus.PASS, "", true);
+		}catch(Exception e){
+			getReport().insertStep(e.getMessage(), "", TestStatus.FAIL, "", true);
+			throw e;
+		}
+
+	}
+
+
+	public void clickCasesTab() throws Exception{
+
+		try{
+			base.click(base.getWebElement(obj.getCasesTab));
+			base.delay(10);
+			getReport().insertStep("User Clicking on the Cases Tab", "", TestStatus.INFO, "", false);
+		}catch(Exception e){
+			getReport().insertStep(e.getMessage(), "", TestStatus.FAIL, "", true);
+			throw e;
+		}
+
+	}
+
+
+	public void clickCasesIdLink(String caseId) throws Exception{
+
+		try{
+			base.click(base.getWebElement(replaceLocator(obj.getCaseLink, caseId)));
+			base.delay(10);
+			getReport().insertStep("User Clicking on the Cases Link", "", TestStatus.INFO, "", false);
+		}catch(Exception e){
+			getReport().insertStep(e.getMessage(), "", TestStatus.FAIL, "", true);
+			throw e;
+		}
+
+	}
+
+	public void selectCancellationValue(String canvalue) throws Exception{
+		try{
+			base.click(base.getWebElement(obj.getCancellationSent));
+			base.click(base.getWebElement(replaceLocator(obj.getCancellationSentValue ,canvalue)));
+			getReport().insertStep("Cancellation Value Selection", "", TestStatus.PASS, "", true);
+		}catch(Exception e){
+			getReport().insertStep(e.getMessage(), "", TestStatus.FAIL, "", true);
+			throw e;
+		}
+	}
+
 }
